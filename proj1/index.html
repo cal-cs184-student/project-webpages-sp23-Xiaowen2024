@@ -187,7 +187,7 @@ When mapping from pixel space to texture space, you may not end up with a perfec
 <br><br>There is a larger difference between the two sampling methods at smaller sample rates. This makes the averaging of the colors from bilinear sampling become more apparent than at higher sampling rates when averaging is already taking place. 
 </p>
 
-table style="width=100%">
+<table style="width=100%">
   <tr>
     <td>
       <img src="images/5.1.png" align="middle" width="200px"/>
@@ -211,13 +211,48 @@ table style="width=100%">
 
 
 <h3 align="middle">Part 6: "Level sampling" with mipmaps for texture mapping</h3>
+<p>When mapping from pixel space to texture space, both axes become scaled as well, causing distortions in the area that a pixel would have covered in texture space. Level sampling determines what is the scale factor of the sides of the new area covered by the pixel, and uses images of varying resolutions to more accurately provide a color for the pixel. We implemented this by finding the derivative of u and v-coordinates in texture space in terms of x and y-coordinates in pixel space. Finding the magnitude of the derivatives in thers of x and in terms of y shows by what factor the sides of the pixel are being stretched and in what direction. We can approximate this area by using a square of side length equal to the largest of the two stretch factors, either x or y. The level is then found by taking the log base 2 of this stretch factor. 
+<br><br>
+Similar to pixel sampling for textures, level sampling can also be done through finding the nearest integer level to the one calculated, or by using linear interpolation to better approximate a continuous change between levels. 
+<br><br>
+Pixel Sampling - Nearest sampling results in aliasing, but it is faster and uses less memory then bilinear sampling. This is because nearest only checks the closest texture color that needs to be mapped, while with bilinear there are three additional color tiles that are check and then averaged for each pixel that is colored. 
+<br><br>
+Level Sampling - Zero leveling sampling is the fastest and most memory efficient method since only the full resolution texture map is used and no additional calculations are done. When level sampling is done, nearest is the fastest and most memory efficient method since for linear level sampling, two texture maps are averaged. Linear sampling has the highest anti-aliasing power, while zero sampling has the least. 
+<br><br>
+Supersampling - Increasing the number of sample taken per pixel has a high anti-aliasing power, but due to sampling and mapping colors for multiple times per pixel and then averaging them, the method can end up very time and memory intensive. 
+<br><br>
+</p>
 
+<table style="width=100%">
+  <tr>
+    <td>
+      <img src="images/6.1.png" align="middle" width="220px"/>
+      
+    </td>
+    <td>
+      <img src="images/6.2.png" align="middle" width="220px"/>
+    
+    </td>
+    <td>
+      <img src="images/6.3.png" align="middle" width="220px"/>
+     
+    </td>
+    <td>
+      <img src="images/6.4.png" align="middle" width="220px"/>
+     
+    </td>
+  </tr>
+</table>
 
 
 <h2 align="middle">Section III: Art Competition</h2>
 <p>If you are not participating in the optional art competition, don't worry about this section!</p>
 
-<h3 align="middle">Part 7: Draw something interesting!</h3>
 
+
+
+
+<h3 align="middle">Part 7: Draw something interesting!</h3>
+<p>We didn't have time to create any :(</p>
 </body>
 </html>
