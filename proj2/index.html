@@ -183,6 +183,17 @@ Below are screenshots of the teapot with and without split.
 				   <tr>
 			
 			  </tr>
+			  tr>
+				<td>
+				  <img src="images/5.6.png" align="middle" width="400px"/>
+				 
+				</td>
+				<td>
+					<img src="images/5.7.png" align="middle" width="400px"/>
+				   </tr>
+				   <tr>
+			
+			  </tr>
 
 			  <h3 align="middle">Part 6: Loop Subdivision for Mesh Upsampling</h3>
 			  <p>We implemented loop subdivision through five steps. The first step was iterating through all of the vertices in the mesh to calculate the new positions they would have once the loop subdivision is complete. The second step was then iterating through all edges present in the mesh to calculate the position of the new vertices that would be added, and store them in the  edges for later. The third step was then to go through all of the edges in the loop once again and split them, ensuring only the old edges were split and not any new ones. During this process, the edges that were split would have the vector3D stored in their newPosition variable to the newPosition variable of the newly made vertex. This was followed by the fourth step were all new edges that connected an old vertex to a new vertex were flipped. The final step was to then update the position of all vertices with the position stored in newPosition.
@@ -224,7 +235,7 @@ Below are screenshots of the teapot with and without split.
 				</p>
 
 				<tr>
-					<td>
+				np	<td>
 					  <img src="images/6.6.png" align="middle" width="400px"/>
 					 
 					</td>
