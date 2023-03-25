@@ -2,6 +2,175 @@
 	<head>
 	</head>
 	<body>
-		Project 3-2 here
+		<div align="middle">
+		<h2 align="middle">Overview</h2>
+		<p>In the project, we implemented a microfacet BSDF and depth of field for our raytracer. For our microfacet implementation, we relied on an equation that described the amount of reflected light. To utilize this equation, we had to additionally implement the Beckman distribution and the Fresnel term. To help better optimize the microfacet rendering, we used a importance sampling method that takes the pdfs of two different sampling angles to find the pdf of the ray we want to sample. To create the effects of depth of field, we used a thin lens camera model and randomly sample a point on the thin lens to generate new rays. Changing the aperture and focal distance values will change the depth of field effects, making the images more realistic. 
+
+		</p>
+		<h2 align="middle">Part2</h2>
+	
+		<tr>
+			<td>
+			  <img src="images/a1.png" align="middle" width="400px"/> 
+			</td>
+			<td>
+				<img src="images/a2.png" align="middle" width="400px"/> 
+			  </td>
+		
+		
+			
+			 
+		  </tr>
+
+		  <tr>
+			<td>
+			  <img src="images/a3.png" align="middle" width="400px"/> 
+			</td>
+			<td>
+				<img src="images/a4.png" align="middle" width="400px"/> 
+			  </td>
+		
+		
+			
+			 
+		  </tr>
+
+		<p> Alpha describes how smooth an object is. The smaller the alpha value, the smoother the surface of the image, and a smoother surface results in a higher number of rays being reflected off. This means that the material gives a more glossy appearance as can be seen in the image with an alpha of 0.005. A larger alpha value means the surface is more rough, making light rays scatter more. This is why the surface of the dragon with an alpha of 0.5 is more diffused. This gradual change from a very glossy surface to a more diffuse one can be seen as the alpha value increases. 
+
+		</p>
+
+		<tr>
+			<td>
+			  <img src="images/importancesampling.png" align="middle" width="400px"/> 
+			</td>
+			<td>
+				<img src="images/hemisphere.png" align="middle" width="400px"/> 
+			  </td>
+		
+		
+			
+			 
+		  </tr>
+		  <p>Even though the number of samples per pixel and the number of light samples was the same for both rendered images, the bunny that was rendered with importance sampling had much less noise then the one with basic cosine hemisphere sampling as can be seen in the images above. The noise is especially noticeable on the reflections on the surface of the bunny.
+		</p>
+
+		<tr>
+			<td>
+			  <img src="images/iron.png" align="middle" width="400px"/> 
+			</td>
+			
+		
+		
+			
+			 
+		  </tr>
+		  <p>The rendered image above is of a bunny made of iron where =1.5454, 1.2216, 1.0355 and k=6.9982, 5.9220, 4.6354 for =614nm, 548nm, 466nm respectively. 
+		</p>
+		
+		<h2 align="middle">Part4</h2>
+		<p>A pinhole camera model and a thin-lens camera model are both simplified mathematical models of camera systems. In the pinhole camera model, the film is called image plane. The aperture is the center of the camera and the coordinate system used is called camera coordinate system. Also, the pinhole camera model assumes that aperture is 0. 
+		</p>
+	
+				<tr>
+					<td>
+					  <img src="images/pinhole1.png" align="middle" width="400px"/> 
+					</td>
+				
+					
+					 
+				  </tr>
+
+				  <p>In the pinhole camera model, everything is in focus. The image is formed when a point in space with coordinates   (X,Y,Z)T is mapped to a point in the image plane as seen in the illustration below. The mapping is solely based on the camera/triangle geometry, or the law of similar triangles. 
+				</p>
+				  <tr>
+					<td>
+					  <img src="images/pinhole2.png" align="middle" width="400px"/> 
+					</td>
+
+		
+				
+					
+					 
+				  </tr>
+				  <p>A thin-lens camera model assumes that lens has infinitesimal thickness and finite apertures. Rays of lights emitted from the same point will travel through the lens and converge at the same point. The focal length determines in which area the lights will converge in focus. This camera model follows the thin lens equation shown below. 
+				</p>
+				<tr>
+					<td>
+					  <img src="images/thinlens.png" align="middle" width="400px"/> 
+					</td>
+				
+					
+					 
+				  </tr>
+				  <p>In project part 4, we used the two properties of the thin lens model to create effects of depth. First, Rays from the same point on the plane of focus will always be focused to the same point on the image plane, no matter where they pass through the lens. Second, The ray passing though the lens' center won't change direction. In the thin lens model, not all parts of the picture will be in focus, which is determined by the focal length and the distance between the lens and object. A single point at the object’s focal distance will converge to a single point on the image plane but points at other distances will be out of focus and will appear blurry. The pinhole camera model cannot create the depth of field effects because light rays will not converge on the same image plane point. 
+				</p>
+				  
+				  
+				
+		<br><br>
+		<p>The depth of field effects can be adjusted by adjusting focal length and lens radius. Below are the sets of images I got by changing the -b parameter in the terminal command. 
+		</p>
+
+		<tr>
+			<td>
+			  <img src="images/dragon0.1.png" align="middle" width="400px"/> 
+			</td>
+
+			<td>
+				<img src="images/dragon0.23.png" align="middle" width="400px"/> 
+			  </td>
+		
+			
+			 
+		  </tr>
+		
+		  <tr>
+			<td>
+			  <img src="images/dragon0.63.png" align="middle" width="400px"/> 
+			</td>
+
+			<td>
+				<img src="images/dragon1.23.png" align="middle" width="400px"/> 
+			  </td>
+		
+			
+			 
+		  </tr>
+
+		  <p>As you can see, as we increase b values while keeping the focal distance the same, there’s more blurring. This happens because smaller b value resembles pinhole camera more, which makes more parts of the dragon in focus. 
+		</p>
+
+	</tr>
+		
+	<tr>
+	  <td>
+		<img src="images/dragon3.png" align="middle" width="400px"/> 
+	  </td>
+
+	  <td>
+		  <img src="images/dragon0.23.png" align="middle" width="400px"/> 
+		</td>
+  
+	  
+	   
+	</tr>
+	<tr>
+		<td>
+		  <img src="images/dragon4.8.png" align="middle" width="400px"/> 
+		</td>
+  
+		<td>
+			<img src="images/dragon5.0.png" align="middle" width="400px"/> 
+		  </td>
+	
+		
+		 
+	  </tr>
+	  <p>As you can see, as we increase d values while keeping the lens radius the same, different parts of the dragon are in focus. This happens because as we increase focal distance, objects that are further away from the camera will be in focus. 
+	</p>
+
+		
+		
+	</div>
 	</body>
 </html>
